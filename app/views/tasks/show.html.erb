@@ -2,21 +2,16 @@
 <%= @task.id %>
  のタスク内容</h1>
  
-<table class="table table-bordered">
-  <tr>
-    <th>id</th>
-    <td><%= @task.id %></td>
-  </tr>
-  <tr>
-    <th>タイトル</th>
-    <td><%= @task.status %></td>
-  </tr>
-  <tr>
-    <th>タスク内容</th>
-    <td><%= @task.content %></td>
-  </tr>
-</table>
+<p>タイトル: 
+<%= @task.status %>
+</p>
 
-<%= link_to 'このタスクを編集する', edit_task_path(@task),  class: 'btn btn-light'%>
+<p>
+<%= @task.content %>
+</p>
 
-<%= link_to 'このタスクを削除する', @task, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-danger' %>
+<%= link_to '一覧に戻る', tasks_path %>
+
+<%= link_to 'このタスクを編集する', edit_task_path(@task) %>
+
+<%= link_to 'このタスクを削除する', @task, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
