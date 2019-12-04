@@ -5,25 +5,46 @@
 
   <ul>
   
-  <% @tasks.each do |task| %>
+    <% @tasks.each do |task| %>
 
-    <li>
-      <%= link_to task.id, task %>
-       : 
-      <%= task.status %> &gt; <%= task.content %>
-    </li>
+      <li>
+        <%= link_to task.id, task %>
+         : 
+        <%= task.status %> &gt; <%= task.content %>
+      </li>
   
-  <% end %>
+    <% end %>
 
   </ul>
+  <div class="col-sm-8">
+      <%= render 'tasks/tasks', tasks: @tasks %>
+    </div>
 
-<%= link_to '新しいタスクの追加', new_task_path %>
+  <%= link_to '新しいタスクの追加', new_task_path %>
 <% else %>
-  <div class="center jumbotron">
-    <div class="text-center">
-      <h1>Welcome to the Tasklists</h1>
-      <%= link_to 'Sign up now!', signup_path %>
-      <%= link_to 'login now!', login_path %>
+  <div class="text-center">
+    <h1>Log in</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3">
+
+    <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
+
+      <div class="form-group">
+        <%= f.label :email, 'Email' %>
+        <%= f.email_field :email, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, 'Password' %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+
+      <%= f.submit 'Log in', class: 'btn btn-primary btn-block' %>
+    <% end %>
+
+    <p>New user? <%= link_to 'Sign up now!', signup_path %></p>
     </div>
   </div>
 <% end %>
